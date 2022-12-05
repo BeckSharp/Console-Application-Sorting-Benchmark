@@ -9,13 +9,14 @@ namespace SortingAlgorithmsBenchmark
         {
             string[] benchmarkNames = 
             {
-                "Quick sort",
-                "Merge sort",
-                "Bubble sort",
-                "Insertion sort",
-                "Selection sort"
+                "Quick sort     ",
+                "Merge sort     ",
+                "Bubble sort    ",
+                "Insertion sort ",
+                "Selection sort "
             };
-            Stopwatch[] benchmarkTimers = new Stopwatch[5];
+            TimeSpan[] benchmarkTimes = new TimeSpan[5];
+            Stopwatch stopWatch = new Stopwatch();
 
             //Randomly generate an array of 1000 numbers.
             int numbers = 10000;
@@ -24,28 +25,42 @@ namespace SortingAlgorithmsBenchmark
             testData = generateArrayOfLength(numbers);
 
             //Quick sort benchmark.
-            testData = generateArrayOfLength(numbers);
+            stopWatch.Start();
+
+            stopWatch.Stop();
+            benchmarkTimes[0] = stopWatch.Elapsed;
 
             //Merge sort benchmark.
             testData = generateArrayOfLength(numbers);
+            stopWatch.Restart();
+
+            stopWatch.Stop();
+            benchmarkTimes[1] = stopWatch.Elapsed;
 
             //Bubble sort benchmark.
             testData = generateArrayOfLength(numbers);
-            Stopwatch timerThree = new Stopwatch();
 
-            timerThree.Start();
+            stopWatch.Restart();
             SortingAlgorithm.bubbleSort(testData);
-            timerThree.Stop();
-            benchmarkTimers[2] = timerThree;
+            stopWatch.Stop();
+            benchmarkTimes[2] = stopWatch.Elapsed;
 
             //Insertion sort benchmark.
             testData = generateArrayOfLength(numbers);
+            stopWatch.Restart();
+
+            stopWatch.Stop();
+            benchmarkTimes[3] = stopWatch.Elapsed;
 
             //Selection sort benchmark.
             testData = generateArrayOfLength(numbers);
+            stopWatch.Restart();
+
+            stopWatch.Stop();
+            benchmarkTimes[4] = stopWatch.Elapsed;
 
             //Output Benchmark Results.
-            printBenchmark(benchmarkNames, benchmarkTimers);
+            printBenchmark(benchmarkNames, benchmarkTimes);
         }
 
         static int[] generateArrayOfLength(int length)
@@ -61,14 +76,11 @@ namespace SortingAlgorithmsBenchmark
             return array;
         }
 
-        static void printBenchmark(string[] benchmarkNames, Stopwatch[] benchmarkTimers)
+        static void printBenchmark(string[] benchmarkNames, TimeSpan[] benchmarkTimes)
         {
             for (int i = 0; i < benchmarkNames.Length; i++)
             {
-                if (i == 2)
-                {
-                    Console.WriteLine(benchmarkNames[i] + " = "+ benchmarkTimers[i].Elapsed + " seconds");
-                }            
+                Console.WriteLine(benchmarkNames[i] + " = "+ benchmarkTimes[i] + " seconds");           
             }
         }
 
