@@ -18,7 +18,7 @@ namespace SortingAlgorithmsBenchmark
             TimeSpan[] benchmarkTimes = new TimeSpan[5];
             Stopwatch stopWatch = new Stopwatch();
 
-            //Randomly generate an array of 1000 numbers.
+            //Randomly generate an array of 10000 numbers.
             int numbers = 10000;
             int[] testData = new int[numbers];
 
