@@ -15,6 +15,7 @@ namespace SortingAlgorithmsBenchmark
 
         static void Main(string[] args)
         {
+            //Initialising variables for the benchmarks.
             string[] benchmarkNames = 
             {
                 "Quick sort     ",
@@ -26,13 +27,12 @@ namespace SortingAlgorithmsBenchmark
             TimeSpan[] benchmarkTimes = new TimeSpan[5];
             Stopwatch stopWatch = new Stopwatch();
 
-            //Randomly generate an array of 10000 numbers.
             int numbers = 10000;
             int[] testData = new int[numbers];
 
+            //Quick sort benchmark.
             testData = generateArrayOfLength(numbers);
 
-            //Quick sort benchmark.
             stopWatch.Start();
 
             stopWatch.Stop();
@@ -40,8 +40,9 @@ namespace SortingAlgorithmsBenchmark
 
             //Merge sort benchmark.
             testData = generateArrayOfLength(numbers);
+
             stopWatch.Restart();
-            SortingAlgorithm.mergeSort(testData, 0, (testData.Length - 1));
+                SortingAlgorithm.mergeSort(testData, 0, (testData.Length - 1));
             stopWatch.Stop();
             benchmarkTimes[1] = stopWatch.Elapsed;
 
@@ -49,21 +50,23 @@ namespace SortingAlgorithmsBenchmark
             testData = generateArrayOfLength(numbers);
 
             stopWatch.Restart();
-            SortingAlgorithm.bubbleSort(testData);
+                SortingAlgorithm.bubbleSort(testData);
             stopWatch.Stop();
             benchmarkTimes[2] = stopWatch.Elapsed;
 
             //Insertion sort benchmark.
             testData = generateArrayOfLength(numbers);
+
             stopWatch.Restart();
-            SortingAlgorithm.insertionSort(testData);
+                SortingAlgorithm.insertionSort(testData);
             stopWatch.Stop();
             benchmarkTimes[3] = stopWatch.Elapsed;
 
             //Selection sort benchmark.
             testData = generateArrayOfLength(numbers);
+
             stopWatch.Restart();
-            SortingAlgorithm.selectionSort(testData);
+                SortingAlgorithm.selectionSort(testData);
             stopWatch.Stop();
             benchmarkTimes[4] = stopWatch.Elapsed;
 
