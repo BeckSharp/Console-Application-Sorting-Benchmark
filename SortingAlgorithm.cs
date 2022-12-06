@@ -4,6 +4,35 @@ namespace SortingAlgorithmsBenchmark
 {
     public class SortingAlgorithm
     {
+        public static void quickSort(int[] data, int low, int high)
+        {
+            if(high - low < 1) { return; }
+
+            int left = low;
+            int right = high;
+            int pivot = data[low + (high - low) / 2];
+
+            while(left <= right)
+            { 
+                while(data[left] < pivot) { left++; }
+                while(data[right] > pivot) { right--; }
+
+                if(left <= right)
+                {  
+                    int temp = data[left];
+                    data[left] = data[right];
+                    data[right] = temp;
+                    
+                    left++;
+                    right--;
+                }
+
+            }
+
+            quickSort(data, low, right);
+            quickSort(data, left, high);
+        }
+
         public static void mergeSort(int[] data, int left, int right)
         {
             int mid;
