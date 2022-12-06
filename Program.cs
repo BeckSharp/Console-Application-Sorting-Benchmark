@@ -34,7 +34,7 @@ namespace SortingAlgorithmsBenchmark
             testData = generateArrayOfLength(numbers);
 
             stopWatch.Start();
-                SortingAlgorithm.quickSort(testData, 0, (testData.Length - 1));
+                SortingAlgorithm.quickSort(testData);
             stopWatch.Stop();
             benchmarkTimes[0] = stopWatch.Elapsed;
 
@@ -42,7 +42,7 @@ namespace SortingAlgorithmsBenchmark
             testData = generateArrayOfLength(numbers);
 
             stopWatch.Restart();
-                SortingAlgorithm.mergeSort(testData, 0, (testData.Length - 1));
+                SortingAlgorithm.mergeSort(testData);
             stopWatch.Stop();
             benchmarkTimes[1] = stopWatch.Elapsed;
 

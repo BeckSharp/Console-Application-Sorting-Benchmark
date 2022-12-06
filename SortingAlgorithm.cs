@@ -4,6 +4,11 @@ namespace SortingAlgorithmsBenchmark
 {
     public class SortingAlgorithm
     {
+        public static void quickSort(int[] data)
+        {
+            quickSort(data, 0, (data.Length - 1));
+        }
+
         public static void quickSort(int[] data, int low, int high)
         {
             if(high - low < 1) { return; }
@@ -31,6 +36,11 @@ namespace SortingAlgorithmsBenchmark
 
             quickSort(data, low, right);
             quickSort(data, left, high);
+        }
+
+        public static void mergeSort(int[] data)
+        {
+            mergeSort(data, 0, (data.Length - 1));
         }
 
         public static void mergeSort(int[] data, int left, int right)
