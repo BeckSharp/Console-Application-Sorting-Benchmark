@@ -5,6 +5,14 @@ namespace SortingAlgorithmsBenchmark
 {
     internal class Benchmark
     {
+        
+        /*
+        Notes:
+        I can use a delegate to clean up the sorting benchmark code.
+        I will need to feed the 5 function names into a function.
+        The function can return a TimeSpan[] which can then be assigned to benchmarkTimes.
+        */
+
         static void Main(string[] args)
         {
             string[] benchmarkNames = 
@@ -55,7 +63,7 @@ namespace SortingAlgorithmsBenchmark
             //Selection sort benchmark.
             testData = generateArrayOfLength(numbers);
             stopWatch.Restart();
-
+            SortingAlgorithm.selectionSort(testData);
             stopWatch.Stop();
             benchmarkTimes[4] = stopWatch.Elapsed;
 
