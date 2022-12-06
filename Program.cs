@@ -5,7 +5,7 @@ namespace SortingAlgorithmsBenchmark
 {
     internal class Benchmark
     {
-        
+
         /*
         Notes:
         I can use a delegate to clean up the sorting benchmark code.
@@ -56,7 +56,7 @@ namespace SortingAlgorithmsBenchmark
             //Insertion sort benchmark.
             testData = generateArrayOfLength(numbers);
             stopWatch.Restart();
-
+            SortingAlgorithm.insertionSort(testData);
             stopWatch.Stop();
             benchmarkTimes[3] = stopWatch.Elapsed;
 
