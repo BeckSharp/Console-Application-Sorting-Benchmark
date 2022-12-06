@@ -41,7 +41,7 @@ namespace SortingAlgorithmsBenchmark
             //Merge sort benchmark.
             testData = generateArrayOfLength(numbers);
             stopWatch.Restart();
-
+            SortingAlgorithm.mergeSort(testData, 0, (testData.Length - 1));
             stopWatch.Stop();
             benchmarkTimes[1] = stopWatch.Elapsed;
 
