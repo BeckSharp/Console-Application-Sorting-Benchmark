@@ -4,6 +4,13 @@ namespace SortingAlgorithmsBenchmark
 {
     public class SortingAlgorithm
     {
+        public static void swap(int[] data, int i, int j)
+        {
+            int temp = data[i];
+            data[i] = data[j];
+            data[j] = temp;
+        }
+
         public static void quickSort(int[] data)
         {
             quickSort(data, 0, (data.Length - 1));
@@ -24,10 +31,8 @@ namespace SortingAlgorithmsBenchmark
 
                 if(left <= right)
                 {  
-                    int temp = data[left];
-                    data[left] = data[right];
-                    data[right] = temp;
-                    
+                    swap(data, left, right);
+    
                     left++;
                     right--;
                 }
@@ -93,9 +98,7 @@ namespace SortingAlgorithmsBenchmark
                 {
                     if (data[j] > data[j + 1]) 
                     {
-                        var temp = data[j];
-                        data[j] = data[j + 1];
-                        data[j + 1] = temp;
+                        swap(data, j, (j + 1));
                     }
                 }
             }
@@ -110,10 +113,7 @@ namespace SortingAlgorithmsBenchmark
 
                 while ((index >= 0) && (data[index + 1] < data[index]))
                 {
-                    int temp = data[index];
-                    data[index] = data[index + 1];
-                    data[index + 1] = temp;
-
+                    swap(data, index, (index + 1));
                     index--;
                 }
             }
@@ -134,9 +134,7 @@ namespace SortingAlgorithmsBenchmark
                     }
                 }
 
-                int temp = data[i];
-                data[i] = data[indexOfSmallest];
-                data[indexOfSmallest] = temp;
+                swap(data, i, indexOfSmallest);
             }
         }
     }
