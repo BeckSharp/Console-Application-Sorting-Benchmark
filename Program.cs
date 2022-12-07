@@ -74,12 +74,5 @@ namespace SortingAlgorithmsBenchmark
                 Console.WriteLine(benchmarkNames[i] + " = "+ benchmarkTimes[i] + " seconds");           
             }
         }
-
-        //Code used for testing program.
-        //Can be removed when program is finished.
-        static void printResults(int[] data) 
-        {
-           Console.WriteLine("[{0}]", string.Join(", ", data));
-        }
     }
 }
