@@ -5,17 +5,20 @@ namespace SortingAlgorithmsBenchmark
 {
     internal class Benchmark
     {
-
-        /*
-        Notes:
-        I can use a delegate to clean up the sorting benchmark code.
-        I will need to feed the 5 function names into a function.
-        The function can return a TimeSpan[] which can then be assigned to benchmarkTimes.
-        */
+        public delegate void PerformCalculation(int[] data);
 
         static void Main(string[] args)
         {
             //Initialising variables for the benchmarks.
+            PerformCalculation[] performCalculations = 
+            {
+                SortingAlgorithm.quickSort,
+                SortingAlgorithm.mergeSort,
+                SortingAlgorithm.bubbleSort,
+                SortingAlgorithm.insertionSort,
+                SortingAlgorithm.selectionSort
+            };
+
             string[] benchmarkNames = 
             {
                 "Quick sort     ",
@@ -24,51 +27,17 @@ namespace SortingAlgorithmsBenchmark
                 "Insertion sort ",
                 "Selection sort "
             };
+            
             TimeSpan[] benchmarkTimes = new TimeSpan[5];
-            Stopwatch stopWatch = new Stopwatch();
-
             int numbers = 10000;
             int[] testData = new int[numbers];
 
-            //Quick sort benchmark.
-            testData = generateArrayOfLength(numbers);
-
-            stopWatch.Start();
-                SortingAlgorithm.quickSort(testData);
-            stopWatch.Stop();
-            benchmarkTimes[0] = stopWatch.Elapsed;
-
-            //Merge sort benchmark.
-            testData = generateArrayOfLength(numbers);
-
-            stopWatch.Restart();
-                SortingAlgorithm.mergeSort(testData);
-            stopWatch.Stop();
-            benchmarkTimes[1] = stopWatch.Elapsed;
-
-            //Bubble sort benchmark.
-            testData = generateArrayOfLength(numbers);
-
-            stopWatch.Restart();
-                SortingAlgorithm.bubbleSort(testData);
-            stopWatch.Stop();
-            benchmarkTimes[2] = stopWatch.Elapsed;
-
-            //Insertion sort benchmark.
-            testData = generateArrayOfLength(numbers);
-
-            stopWatch.Restart();
-                SortingAlgorithm.insertionSort(testData);
-            stopWatch.Stop();
-            benchmarkTimes[3] = stopWatch.Elapsed;
-
-            //Selection sort benchmark.
-            testData = generateArrayOfLength(numbers);
-
-            stopWatch.Restart();
-                SortingAlgorithm.selectionSort(testData);
-            stopWatch.Stop();
-            benchmarkTimes[4] = stopWatch.Elapsed;
+            //Running Benchmarks.
+            for (int i = 0; i < 5; i++)
+            {
+                testData = generateArrayOfLength(numbers);
+                benchmarkTimes[i] = calculateBenchmark(testData, performCalculations[i]);
+            }
 
             //Output Benchmark Results.
             printBenchmark(benchmarkNames, benchmarkTimes);
@@ -85,6 +54,17 @@ namespace SortingAlgorithmsBenchmark
             }
 
             return array;
+        }
+
+        static TimeSpan calculateBenchmark(int[] data, PerformCalculation performCalculation)
+        {
+            Stopwatch stopWatch = new Stopwatch();
+
+            stopWatch.Start();
+                performCalculation(data);
+            stopWatch.Stop();
+
+            return stopWatch.Elapsed;
         }
 
         static void printBenchmark(string[] benchmarkNames, TimeSpan[] benchmarkTimes)
