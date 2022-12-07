@@ -28,12 +28,12 @@ namespace SortingAlgorithmsBenchmark
                 "Selection sort "
             };
             
-            TimeSpan[] benchmarkTimes = new TimeSpan[5];
+            TimeSpan[] benchmarkTimes = new TimeSpan[performCalculations.Length];
             int numbers = 10000;
             int[] testData = new int[numbers];
 
             //Running Benchmarks.
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < performCalculations.Length; i++)
             {
                 testData = generateArrayOfLength(numbers);
                 benchmarkTimes[i] = calculateBenchmark(testData, performCalculations[i]);
